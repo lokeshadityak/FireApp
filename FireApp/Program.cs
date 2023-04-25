@@ -54,9 +54,9 @@ app.UseHangfireDashboard();
 app.MapHangfireDashboard();
 
 
-RecurringJob.AddOrUpdate<IServiceManagement>(x => x.sendEmail(), "0 * * ? * *"); //Every min
-RecurringJob.AddOrUpdate<IServiceManagement>(x => x.SyncData(), "0 */2 * ? * *"); //Every 2 min
-RecurringJob.AddOrUpdate<IServiceManagement>(x => x.UpdateDatabase(), "0 */3 * ? * *"); //Every 3 min
-RecurringJob.AddOrUpdate<IServiceManagement>(x => x.GenerateMerchendise(), "0 */4 * ? * *"); //Every 4 min
+//RecurringJob.AddOrUpdate<IServiceManagement>(x => x.sendEmail(), "0 * * ? * *"); //Every min
+//RecurringJob.AddOrUpdate<IServiceManagement>(x => x.SyncData(), "0 */2 * ? * *"); //Every 2 min
+RecurringJob.AddOrUpdate<IServiceManagement>(x => x.UpdateDatabase(), "0 * * ? * *"); //Every min
+//RecurringJob.AddOrUpdate<IServiceManagement>(x => x.GenerateMerchendise(), "0 */4 * ? * *"); //Every 4 min
 
 app.Run();
