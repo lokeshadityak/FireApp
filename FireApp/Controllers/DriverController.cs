@@ -17,7 +17,7 @@ namespace FireApp.Controllers
             _logger = logger;
         }
 
-        [HttpGet]
+        /*[HttpGet]
         public IActionResult GetDrivers()
         {
             var items = drivers.Where(x => x.status == 1).ToList();
@@ -71,6 +71,6 @@ namespace FireApp.Controllers
             driver.status = 0;
 
             return Ok(driver);
-        }
+        }*/
     }
 }

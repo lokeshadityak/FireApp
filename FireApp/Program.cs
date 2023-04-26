@@ -21,6 +21,7 @@ builder.Services.AddHangfire(config => config
 builder.Services.AddHangfireServer();
 
 builder.Services.AddTransient<IServiceManagement, ServiceManagement>();
+builder.Services.AddScoped<IEmailService, EmailService>();
 
 var app = builder.Build();
 
@@ -37,26 +38,11 @@ app.UseAuthorization();
 
 app.MapControllers();
 app.UseHangfireDashboard();
-/*app.UseHangfireDashboard("/hangfire", new DashboardOptions()
-{
-    DashboardTitle = "FireBoard",
-    Authorization = new[]
-    {
-        new HangfireCustomBasicAuthenticationFilter
-        {
-            User = "admin",
-            Pass = "admin"
-        }
-    }
-});*/
+
 
 
 app.MapHangfireDashboard();
 
-
-//RecurringJob.AddOrUpdate<IServiceManagement>(x => x.sendEmail(), "0 * * ? * *"); //Every min
-//RecurringJob.AddOrUpdate<IServiceManagement>(x => x.SyncData(), "0 */2 * ? * *"); //Every 2 min
 RecurringJob.AddOrUpdate<IServiceManagement>(x => x.UpdateDatabase(), "0 * * ? * *"); //Every min
-//RecurringJob.AddOrUpdate<IServiceManagement>(x => x.GenerateMerchendise(), "0 */4 * ? * *"); //Every 4 min
 
 app.Run();
